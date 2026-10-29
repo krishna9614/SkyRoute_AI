@@ -18,8 +18,8 @@ user ──> ADK Web ──> skyroute_agent (LlmAgent, Gemini)
 | Repo                                                            | Role                                              | Default endpoint                 |
 | --------------------------------------------------------------- | ------------------------------------------------- | -------------------------------- |
 | [SkyRoute_AI](https://github.com/krishna9614/SkyRoute_AI)       | ADK root agent (this repo)                        | `adk web` on `:8000`             |
-| [skyroute-weather-mcp](https://github.com/krishna9614/skyroute-weather-mcp) | Weather MCP server — `get_weather(city)`          | `http://127.0.0.1:8001/mcp`      |
-| [skyroute-places-mcp](https://github.com/krishna9614/skyroute-places-mcp)   | Places MCP server — `search_places(city)`         | `http://127.0.0.1:8002/mcp`      |
+| [skyroute-weather-mcp](https://github.com/krishna9614/skyroute-weather-mcp) | Weather MCP server — `get_weather(city)`          | `http://127.0.0.1:8001/weather-mcp` |
+| [skyroute-places-mcp](https://github.com/krishna9614/skyroute-places-mcp)   | Places MCP server — `search_places(city)`         | `http://127.0.0.1:8002/places-mcp`  |
 
 ## Requirements
 
@@ -66,8 +66,8 @@ All values live in `.env` (see `.env.example`):
 | `GOOGLE_API_KEY`           | _(empty — required)_        | Gemini API key                   |
 | `GOOGLE_GENAI_USE_VERTEXAI`| `FALSE`                     | Use AI Studio key, not Vertex    |
 | `SKYROUTE_MODEL`           | `gemini-2.5-flash`          | Gemini model for the root agent  |
-| `WEATHER_MCP_URL`          | `http://127.0.0.1:8001/mcp` | Weather MCP streamable-HTTP URL  |
-| `PLACES_MCP_URL`           | `http://127.0.0.1:8002/mcp` | Places MCP streamable-HTTP URL   |
+| `WEATHER_MCP_URL`          | `http://127.0.0.1:8001/weather-mcp` | Weather MCP streamable-HTTP URL  |
+| `PLACES_MCP_URL`           | `http://127.0.0.1:8002/places-mcp`  | Places MCP streamable-HTTP URL   |
 
 ## Validation
 

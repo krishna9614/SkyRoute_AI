@@ -22,8 +22,8 @@ load_dotenv()
 logger = logging.getLogger("skyroute.agent")
 
 MODEL = os.getenv("SKYROUTE_MODEL", "gemini-2.5-flash")
-WEATHER_MCP_URL = os.getenv("WEATHER_MCP_URL", "http://127.0.0.1:8001/mcp")
-PLACES_MCP_URL = os.getenv("PLACES_MCP_URL", "http://127.0.0.1:8002/mcp")
+WEATHER_MCP_URL = os.getenv("WEATHER_MCP_URL", "http://127.0.0.1:8001/weather-mcp")
+PLACES_MCP_URL = os.getenv("PLACES_MCP_URL", "http://127.0.0.1:8002/places-mcp")
 
 logging.basicConfig(
     level=logging.INFO,
