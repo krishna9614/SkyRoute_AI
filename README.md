@@ -9,15 +9,15 @@ mock MCP tools, no external APIs or databases.
 ## Architecture
 
 ```
-user ──> ADK Web ──> skyroute_agent (LlmAgent, Gemini)
-                          │
-                          ├── McpToolset ──> skyroute-weather-mcp ──> get_weather(city)
-                          └── McpToolset ──> skyroute-places-mcp  ──> search_places(city)
+user ──> SkyRoute UI (app.py, FastAPI) ──> skyroute_agent (LlmAgent, Gemini)
+                                              │
+                                              ├── McpToolset ──> skyroute-weather-mcp ──> get_weather(city)
+                                              └── McpToolset ──> skyroute-places-mcp  ──> search_places(city)
 ```
 
 | Repo                                                            | Role                                              | Default endpoint                 |
 | --------------------------------------------------------------- | ------------------------------------------------- | -------------------------------- |
-| [SkyRoute_AI](https://github.com/krishna9614/SkyRoute_AI)       | ADK root agent (this repo)                        | `adk web` on `:8000`             |
+| [SkyRoute_AI](https://github.com/krishna9614/SkyRoute_AI)       | ADK root agent + custom chat UI (this repo)       | `python app.py` on `:8000`       |
 | [skyroute-weather-mcp](https://github.com/krishna9614/skyroute-weather-mcp) | Weather MCP server — `get_weather(city)`          | `http://127.0.0.1:8001/weather-mcp` |
 | [skyroute-places-mcp](https://github.com/krishna9614/skyroute-places-mcp)   | Places MCP server — `search_places(city)`         | `http://127.0.0.1:8002/places-mcp`  |
 
@@ -45,17 +45,18 @@ pip install -r requirements.txt
 cp .env.example .env
 python server.py
 
-# 3. ADK root agent (terminal 3)
+# 3. ADK root agent + SkyRoute UI (terminal 3)
 git clone https://github.com/krishna9614/SkyRoute_AI
 cd SkyRoute_AI
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env   # set GOOGLE_API_KEY
-adk web --log_level info
+python app.py
 ```
 
-Open the ADK Web UI (default `http://localhost:8000`), select `skyroute_agent`,
-and send a query.
+Open `http://localhost:8000` — the custom SkyRoute chat UI is served by the
+same FastAPI process that exposes the agent API (`/apps/...`, `/run_sse`).
+The default ADK dev UI is still available via `adk web` if needed.
 
 ## Configuration
 
@@ -78,6 +79,8 @@ All values live in `.env` (see `.env.example`):
 | "Weather and things to do in London?"    | Both tools called              |
 | "Hi, how are you?"                       | No tool called                 |
 
-Tool calls are logged at `INFO` level in the `adk web` terminal
+Tool calls are logged at `INFO` level in the `python app.py` terminal
 (`tool call / tool result / tool error` lines from `skyroute.agent`), and on
 the MCP server side each invocation logs its name, arguments, and result.
+In the UI, tool calls also appear as activity chips inside the agent's reply
+bubble.
