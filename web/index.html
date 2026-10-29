@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkyRoute AI — Your Travel Companion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sky">
+    <div class="cloud cloud-a"></div>
+    <div class="cloud cloud-b"></div>
+    <div class="cloud cloud-c"></div>
+  </div>
+
+  <main class="shell">
+    <header class="brand">
+      <div class="brand-mark">✈</div>
+      <div class="brand-text">
+        <h1>SkyRoute AI</h1>
+        <p>Your AI travel companion</p>
+      </div>
+      <div id="conn-status" class="conn" title="Agent connection">
+        <span class="conn-dot"></span><span class="conn-label">connecting…</span>
+      </div>
+    </header>
+
+    <section class="chat-card">
+      <div id="chat" class="chat">
+        <div class="hero">
+          <div class="hero-icon">
+            <svg viewBox="0 0 64 64" width="52" height="52" fill="none" aria-hidden="true">
+              <circle cx="32" cy="32" r="30" stroke="url(#g)" stroke-width="2.5" opacity="0.9"/>
+              <path d="M18 36c8-10 20-14 30-14-4 10-10 22-20 26l-4-6-6-6z" fill="url(#g)"/>
+              <path d="M14 46l10-4M20 50l8-3" stroke="#ffd9a0" stroke-width="2.5" stroke-linecap="round"/>
+              <defs>
+                <linearGradient id="g" x1="14" y1="14" x2="50" y2="50">
+                  <stop stop-color="#ffb84d"/><stop offset="1" stop-color="#4a8bf0"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <h2>Where to next?</h2>
+          <p>Ask me about weather, places to visit, or start planning a trip.</p>
+          <div class="chips">
+            <button class="chip" data-prompt="What's the weather in Paris?">🌤 Weather in Paris</button>
+            <button class="chip" data-prompt="What places should I visit in Tokyo?">🗼 Places in Tokyo</button>
+            <button class="chip" data-prompt="What's the weather and what can I visit in London?">🧳 Weather + places in London</button>
+            <button class="chip" data-prompt="Hi! Who are you?">👋 Just say hi</button>
+          </div>
+        </div>
+      </div>
+
+      <form id="composer" class="composer" autocomplete="off">
+        <input
+          id="input"
+          type="text"
+          placeholder="Ask about a destination…"
+          maxlength="2000"
+          required
+        />
+        <button type="submit" id="send" class="send" title="Send">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3.4 20.6L21.8 12 3.4 3.4l-.01 6.53L14 12 3.39 14.07l.01 6.53z" fill="currentColor"/>
+          </svg>
+        </button>
+      </form>
+    </section>
+
+    <footer class="foot">
+      <span>Powered by Gemini · Google ADK · MCP</span>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
